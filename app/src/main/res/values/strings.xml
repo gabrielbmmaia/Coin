@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Coin</string>
+    <string name="r">R$</string>
 </resources>
