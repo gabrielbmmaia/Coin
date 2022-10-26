@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Coin"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

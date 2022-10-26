@@ -23,7 +23,8 @@ object DataModule {
     /**
      * Aqui temos as constantes utilizadas na criação do service
      * */
-    private const val BASE_URL = "https://api.hgbrasil.com/"
+
+    private const val BASE_URL = "https://api.apilayer.com/exchangerates_data/"
     private const val OK_HTTP = "ok http"
 
     /**
@@ -33,11 +34,10 @@ object DataModule {
      *  função para organizar aqui todos os módulos que
      *  serão enviados para a classe App
      * */
+
     fun load() {
         loadKoinModules(currencyModule() + networkModule())
     }
-
-
 
     private fun currencyModule(): Module {
         return module {
@@ -56,15 +56,6 @@ object DataModule {
             single <CurrencyServices> { createService(factory = get(), client = get()) }
 
             /**
-             * Aqui mostramos pro Koin como se cria
-             * a factory com o Moshi
-             * */
-
-            single {
-                Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-            }
-
-            /**
              * Aqui estamos mostrando como criamos
              * o interceptor OkHttp pro Koin
              * */
@@ -79,6 +70,14 @@ object DataModule {
                     .build()
             }
 
+            /**
+             * Aqui mostramos pro Koin como se cria
+             * a factory com o Moshi
+             * */
+
+            single {
+                Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+            }
         }
     }
 

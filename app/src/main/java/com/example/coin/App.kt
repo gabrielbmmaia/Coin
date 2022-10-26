@@ -2,6 +2,7 @@ package com.example.coin
 
 import android.app.Application
 import com.example.coin.data.di.DataModule
+import com.example.coin.presentation.di.PresentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -23,6 +24,7 @@ class App : Application () {
          * Carregar os módulos definido em cada camada
          * */
         DataModule.load()
+        PresentationModule.load()
 
     }
 }

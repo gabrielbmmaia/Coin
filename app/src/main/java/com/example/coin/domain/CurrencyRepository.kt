@@ -1,9 +1,8 @@
 package com.example.coin.domain
 
+import kotlinx.coroutines.flow.Flow
+
 interface CurrencyRepository {
 
-    fun converteValorUsd(valorReal: String) : String
-
-    fun converteValorEur(valorReal: String) : String
-
+    suspend fun convertAmount(to: String, from: String, amount: String): AmountResult
 }
