@@ -1,67 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:padding="30dp"
     tools:context=".presentation.main.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/main_activity_coin_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/main_activity_titulo"
+        app:srcCompat="@drawable/coin_image" />
 
-        <ImageView
-            android:id="@+id/main_activity_coin_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_marginTop="80dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/coin_image" />
+    <TextView
+        android:id="@+id/main_activity_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conversor de Dinheiro"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/main_activity_horizontal_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_coin_logo" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/main_activity_valor_real"
-            android:layout_width="200dp"
+    <TextView
+        android:id="@+id/main_activity_from"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="De:"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/main_activity_spinner_from"
+        app:layout_constraintTop_toTopOf="@+id/main_activity_horizontal_guideline" />
+
+    <TextView
+        android:id="@+id/main_activity_to"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Para:"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/main_activity_spinner_to"
+        app:layout_constraintTop_toTopOf="@+id/main_activity_horizontal_guideline" />
+
+    <Spinner
+        android:id="@+id/main_activity_spinner_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:entries="@array/currency_codes_brl"
+        android:padding="14dp"
+        app:layout_constraintEnd_toStartOf="@+id/main_activity_spinner_to"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_from" />
+
+    <Spinner
+        android:id="@+id/main_activity_spinner_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:entries="@array/currency_codes_usd"
+        android:padding="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_to" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/main_activity_textInput_valor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:hint="Valor"
+        app:layout_constraintBottom_toBottomOf="@+id/main_activity_spinner_from"
+        app:layout_constraintEnd_toStartOf="@+id/main_activity_spinner_from"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_activity_spinner_from">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/main_activity_editTextInput_valor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/r"
-            android:layout_margin="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_activity_coin_logo">
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+    <TextView
+        android:id="@+id/main_activity_resultado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/main_activity_button_converter"
+        app:layout_constraintEnd_toStartOf="@+id/main_activity_button_converter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_activity_button_converter"
+        tools:text="10 USD = 53.10 BRL" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/main_activity_button_converter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Converter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_spinner_from" />
 
-        <TextView
-            android:id="@+id/main_activity_valor_dolar"
-            android:textSize="18sp"
-            tools:text="USD $40,00"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/main_activity_valor_real"
-            app:layout_constraintEnd_toEndOf="@+id/main_activity_valor_real"
-            app:layout_constraintTop_toBottomOf="@+id/main_activity_valor_real"/>
-
-        <TextView
-            android:textSize="18sp"
-            tools:text="EUR $40,00"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/main_activity_valor_dolar"
-            app:layout_constraintEnd_toEndOf="@+id/main_activity_valor_dolar"
-            app:layout_constraintTop_toBottomOf="@+id/main_activity_valor_dolar"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_activity_horizontal_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+</androidx.constraintlayout.widget.ConstraintLayout>
