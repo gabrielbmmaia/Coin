@@ -1,8 +1,9 @@
 package com.example.coin.domain
 
-import kotlinx.coroutines.flow.Flow
+import com.example.coin.data.util.Resource
 
 interface CurrencyRepository {
 
-    suspend fun convertAmount(to: String, from: String, amount: String): AmountResult
+    suspend fun convertAmount(to: String, from: String, amount: String): Resource<AmountResult>
+
 }
