@@ -1,9 +1,11 @@
 package com.example.coin.data.di
 
 import android.util.Log
-import com.example.coin.data.respository.CurrencyRepositoryImpl
+import com.example.coin.core.Constants.BASE_URL
+import com.example.coin.core.Constants.OK_HTTP
 import com.example.coin.data.remote.services.CurrencyServices
-import com.example.coin.domain.CurrencyRepository
+import com.example.coin.data.respository.CurrencyRepositoryImpl
+import com.example.coin.domain.repository.CurrencyRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -15,25 +17,19 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
- *  Organização de dependências da camada Data
+ *  Organização de dependências da camada Data.
  * */
 
 object DataModule {
 
     /**
-     * Aqui temos as constantes utilizadas na criação do service
-     * */
-
-    private const val BASE_URL = "https://api.apilayer.com/exchangerates_data/"
-    private const val OK_HTTP = "ok http"
-
-    /**
-     *  --> FUNÇÃO MUITO IMPORTANTE NO QUESITO ORGANIZAÇÃO <--
+     *  FUNÇÃO MUITO IMPORTANTE NO QUESITO ORGANIZAÇÃO
+     *
      *  A função load serve para carregar todos os módulos
      *  dessa camada. Essa função é chamda pela classe App
      *  quando o app é inicializado. É ideal existir essa
      *  função para organizar aqui todos os módulos que
-     *  serão enviados para a classe App
+     *  serão enviados para a classe App.
      * */
 
     fun load() {
@@ -50,14 +46,13 @@ object DataModule {
         return module {
 
             /**
-             * Aqui estamos criando o CurrencyService e
-             * colocando como parâmetro os singleton abaixo
+             * Aqui estamos criando o CurrencyService.
              * */
 
-            single <CurrencyServices> { createService(factory = get(), client = get()) }
+            single<CurrencyServices> { createService(factory = get(), client = get()) }
 
             /**
-             * Aqui estamos mostrando como criamos o interceptor OkHttp pro Koin
+             * Aqui estamos mostrando como criamos o interceptor OkHttp pro Koin.
              * */
 
             single {
@@ -71,7 +66,7 @@ object DataModule {
             }
 
             /**
-             * Aqui mostramos pro Koin como se cria a factory com o Moshi
+             * Aqui mostramos pro Koin como se cria a factory com o Moshi.
              * */
 
             single {
@@ -85,6 +80,7 @@ object DataModule {
      * para poder reutilizar posteriomente em outros serviços
      * e para isso só é necessário indicar qual é o serviço
      * depois do "single" dentro do modulo do Koin.
+     *
      * A expressão "<reified T> significa que redefinimos o "T"
      * dentro da função pelo generic que for indicado quando a função é chamada.
      * */

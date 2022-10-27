@@ -3,10 +3,12 @@ package com.example.coin.data.remote.response
 import com.example.coin.domain.model.AmountResult
 
 /**
- * Essa é a classe que é utilizada na camada de data
- * e nela também precisa ter a função de conversão para
+ * Essa é a classe que é utilizada na camada de data.
+ *
+ * É necessário ter a função de conversão para
  * a classe do domain que faz conexão com as camadas do
  * presentation.
+ *
  * É necessario dividir entre duas classes ( uma que é
  * usada na camada de data e outro que é usada na camada do
  * domain & presentation ) porque qualquer mudança de nome das
