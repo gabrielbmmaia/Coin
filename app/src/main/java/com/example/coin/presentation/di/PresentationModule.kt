@@ -14,7 +14,7 @@ object PresentationModule {
 
     /**
      * Semelhante ao data di, aqui estamos agrupando em
-     * uma função só todos módulos que serão passados
+     * uma única função todos os módulos que serão passados
      * para o App
      * */
 

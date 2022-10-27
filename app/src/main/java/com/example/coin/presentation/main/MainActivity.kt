@@ -10,6 +10,13 @@ import com.example.coin.databinding.ActivityMainBinding
 import com.example.coin.presentation.util.State
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
+/**
+ * A camada de View deve saber como a view se
+ * porta diante de cada estado enviado pela
+ * ViewModel através da variável que a View
+ * está observando
+ * */
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy {
@@ -23,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         enviarValores()
         receberValores()
     }
+
+    /**
+     * Essa função serve para a view se comporte diferente
+     * de acordo com cada estado possível que a ViewModel
+     * pode enviar para ela
+     * */
 
     private fun receberValores() {
         lifecycleScope.launchWhenStarted {
@@ -44,11 +57,15 @@ class MainActivity : AppCompatActivity() {
                         binding.mainActivityProgressBar.isVisible = true
                         binding.mainActivityResultado.isVisible = false
                     }
-                    else -> Unit
+                    else -> {}
                 }
             }
         }
     }
+
+    /**
+     * Função serve para enviar os dados necessários para que a ViewModel
+     * */
 
     private fun enviarValores() {
         binding.mainActivityButtonConverter.setOnClickListener {

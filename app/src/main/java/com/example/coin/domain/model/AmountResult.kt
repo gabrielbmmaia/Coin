@@ -1,4 +1,4 @@
-package com.example.coin.domain
+package com.example.coin.domain.model
 
 
 /**

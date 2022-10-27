@@ -20,7 +20,7 @@ import kotlin.math.round
  * A variável Mutable precisa ser privada que é a variável onde
  * fazemos todas as modificações aqui dentro do viewModel e a
  * variável imutável precisa ser pública para a camada da View
- * poder OBSERVALA. A variável imutável é um cast da variável mutável.
+ * poder OBSERVALA. A variável imutável é um "cast" da variável mutável.
  * */
 
 class MainViewModel(private val repository: CurrencyRepository) : ViewModel() {

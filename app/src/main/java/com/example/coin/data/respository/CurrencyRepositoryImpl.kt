@@ -1,11 +1,9 @@
-package com.example.coin.data
+package com.example.coin.data.respository
 
 import com.example.coin.data.remote.services.CurrencyServices
 import com.example.coin.data.util.Resource
-import com.example.coin.domain.AmountResult
+import com.example.coin.domain.model.AmountResult
 import com.example.coin.domain.CurrencyRepository
-import kotlinx.coroutines.flow.Flow
-import okhttp3.internal.filterList
 
 
 /**
@@ -16,9 +14,12 @@ import okhttp3.internal.filterList
  * Nós precisamos fazer com que as camdas sejam dependentes de interfaces por conta
  * do SOLID Principles falado no Clean Architecture. Quando as classes são dependentes
  * de interfaces e essas interfaces tem implementações que são injetadas a partir da injeção
- * de depedência, o código fica mais fácil de melhorar e dar manutenções já que a maioria
+ * de depedência, o código fica mais fácil para melhorar e dar manutenções já que a maioria
  * das mudanças serão feitas apenas nas implementações dessas interfaces enquanto as outras
  * camadas não são afetadas.
+ * O Repository em si serve para fazer toda lógica para o a camada do Doamin. O Domain não quer
+ * saber como o repository achou o resultado, ela só quer o resultado. Aqui nessa classe de
+ * "intermediação" que também fazemos a relação da API com o DAO caso necessário
  * */
 class CurrencyRepositoryImpl(private val service: CurrencyServices) : CurrencyRepository {
 

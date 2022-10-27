@@ -1,7 +1,7 @@
 package com.example.coin.data.di
 
 import android.util.Log
-import com.example.coin.data.CurrencyRepositoryImpl
+import com.example.coin.data.respository.CurrencyRepositoryImpl
 import com.example.coin.data.remote.services.CurrencyServices
 import com.example.coin.domain.CurrencyRepository
 import com.squareup.moshi.Moshi
@@ -28,6 +28,7 @@ object DataModule {
     private const val OK_HTTP = "ok http"
 
     /**
+     *  --> FUNÇÃO MUITO IMPORTANTE NO QUESITO ORGANIZAÇÃO <--
      *  A função load serve para carregar todos os módulos
      *  dessa camada. Essa função é chamda pela classe App
      *  quando o app é inicializado. É ideal existir essa
@@ -49,15 +50,14 @@ object DataModule {
         return module {
 
             /**
-             * Aqui estamos criamos o CurrencyService e
+             * Aqui estamos criando o CurrencyService e
              * colocando como parâmetro os singleton abaixo
              * */
 
             single <CurrencyServices> { createService(factory = get(), client = get()) }
 
             /**
-             * Aqui estamos mostrando como criamos
-             * o interceptor OkHttp pro Koin
+             * Aqui estamos mostrando como criamos o interceptor OkHttp pro Koin
              * */
 
             single {
@@ -71,8 +71,7 @@ object DataModule {
             }
 
             /**
-             * Aqui mostramos pro Koin como se cria
-             * a factory com o Moshi
+             * Aqui mostramos pro Koin como se cria a factory com o Moshi
              * */
 
             single {
@@ -85,9 +84,9 @@ object DataModule {
      * Colocamos os generecis aqui nessa criação de servico Api
      * para poder reutilizar posteriomente em outros serviços
      * e para isso só é necessário indicar qual é o serviço
-     * depois do "single" dentro do modulo do Koin. A expressão
-     * "<reified T> significa que redefinimos o "T" dentro da função
-     * pelo generic que for indicado quando a função é chamada.
+     * depois do "single" dentro do modulo do Koin.
+     * A expressão "<reified T> significa que redefinimos o "T"
+     * dentro da função pelo generic que for indicado quando a função é chamada.
      * */
 
     private inline fun <reified T> createService(
